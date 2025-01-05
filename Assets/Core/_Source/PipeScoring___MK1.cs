@@ -2,26 +2,24 @@ using UnityEngine;
 
 public class PipeScoring___MK1 : MonoBehaviour
 {
-    //Component 
-    public BoxCollider2D _theMiddlePipeHitBox;
+    private Score___MK2 scoreManager;
 
+    private void Start()
+    {
+        // Attempt to find the Score___MK2 instance in the scene
+        scoreManager = FindObjectOfType<Score___MK2>();
 
-
-
-
-
-
-
+        if (scoreManager == null)
+        {
+            Debug.LogError("Score___MK2 not found! Ensure it's attached to a GameObject in the scene.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision + "Entered Pipe Hitbox");
-        // Directly call the static method from the Score___MK1 class to update the score
-        Score___MK1.UpdateScore(1); // Increment the score by 1
+        if (collision.CompareTag("Player"))
+        {
+            scoreManager.AddScore(1); // Use the instance to call AddScore
+        }
     }
-
-
-
-   
 }
-    
