@@ -27,7 +27,7 @@ public class PlayerMK1 : MonoBehaviour
     void Jump()
     {
         // Apply jump power directly
-        _rb2d.velocity = new Vector2(_rb2d.velocity.x, _theJumpPower);
+        _rb2d.linearVelocity = new Vector2(_rb2d.linearVelocity.x, _theJumpPower);
 
         // Start the jump cooldown
         StartCoroutine(JumpCooldownCoroutine());
@@ -38,7 +38,7 @@ public class PlayerMK1 : MonoBehaviour
         if (_rb2d.gravityScale == 0)
         {
             // Apply manual gravity if built-in gravity is disabled
-            _rb2d.velocity += new Vector2(0, _theGravity * Time.fixedDeltaTime);
+            _rb2d.linearVelocity += new Vector2(0, _theGravity * Time.fixedDeltaTime);
         }
     }
 
